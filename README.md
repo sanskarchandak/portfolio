@@ -15,7 +15,7 @@ This portfolio serves as my personal website and is built using vanilla web tech
 - CI/CD with GitHub Actions
 - Automated Deployment
 - Frontend Testing
-- Playwright Automation
+- Selenium Automation (Then playwright conversion)
 - Software Engineering Best Practices
 
 ---
@@ -123,9 +123,9 @@ No additional setup is required.
 
 Software Test Engineer | QA | API Testing | Automation | AI Enthusiast
 
-LinkedIn: *(Add your profile)*
+LinkedIn: *https://www.linkedin.com/in/sanskarchandak/*
 
-GitHub: *(Add your profile)*
+GitHub: *https://github.com/sanskarchandak*
 
 ---
 
