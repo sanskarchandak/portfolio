@@ -22,4 +22,3 @@ public class Homepage
 
     }
 }
-//reate initial automation framework for portfolio test cases and add homepage and navbar tests
