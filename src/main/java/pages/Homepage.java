@@ -17,6 +17,10 @@ public class Homepage
 
         Navbar nav = new Navbar(driver);
         nav.aboutverification();
+        emailbutton eBtn = new emailbutton(driver);
+        eBtn.verifyemail();
+        resumebutton revBtn =  new resumebutton(driver);
+        revBtn.resumeVerification();
 
         driver.quit();
 
