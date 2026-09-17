@@ -21,6 +21,16 @@ public class Homepage
         eBtn.verifyemail();
         resumebutton revBtn =  new resumebutton(driver);
         revBtn.resumeVerification();
+        githubVerification gitV =  new githubVerification(driver);
+        gitV.verifyGitbtn();
+        linkedinVerification lVerify = new linkedinVerification(driver);
+        lVerify.verifyLinkedinBtn();
+        instagramVerification instaVerify = new instagramVerification(driver);
+        instaVerify.instaVerify();
+        twitterVerification tVerify = new twitterVerification(driver);
+        tVerify.verifyTwitter();
+        footerYearVerification fYearVerify =  new footerYearVerification(driver);
+        fYearVerify.verifyFooterYear();
 
         driver.quit();
 
