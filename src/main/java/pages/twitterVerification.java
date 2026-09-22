@@ -3,11 +3,12 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 public class twitterVerification
 {
     WebDriver driver;
-    twitterVerification(WebDriver driver)
+    public twitterVerification(WebDriver driver)
     {
         this.driver= driver;
     }
@@ -16,12 +17,6 @@ public class twitterVerification
     {
         WebElement twitter = driver.findElement(twitterBtn);
         String href = twitter.getAttribute("href");
-        if(href.equals("https://x.com/sanskarYchandak"))
-        {
-            System.out.println("Twitter link is correct");
-        }else
-        {
-            System.out.println("Twitter link is incorrect");
-        }
+        Assert.assertTrue(href.equals("https://x.com/sanskarYchandak"),"Twitter link is correct");
     }
 }

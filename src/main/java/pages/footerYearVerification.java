@@ -3,11 +3,12 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 public class footerYearVerification
 {
     WebDriver driver;
-    footerYearVerification(WebDriver driver)
+    public footerYearVerification(WebDriver driver)
     {
         this.driver=driver;
     }
@@ -17,12 +18,6 @@ public class footerYearVerification
     {
         WebElement year = driver.findElement(footYear);
         String Year = year.getText();
-        if(Year.equals("2026"))
-        {
-            System.out.println("Correct year is present");
-        }else
-        {
-            System.out.println("Incorrect Year is present");
-        }
+        Assert.assertTrue(Year.equals("2026"),"Correct year is present" );
     }
 }

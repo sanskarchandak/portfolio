@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -24,13 +25,8 @@ public class Navbar {
     {
         driver.findElement(about).click();
         turl = driver.getCurrentUrl();
-        if(turl.contains("about"))
-        {
-            System.out.println("about section working as expected");
-        }else
-        {
-            System.out.println("about section not working as expected");
-        }
+
+        Assert.assertTrue(turl.contains("about"), "About section working as expected");
     skillverification();
     contactverification();
 
@@ -39,25 +35,13 @@ public class Navbar {
     {
             driver.findElement(skills).click();
             turl = driver.getCurrentUrl();
-            if(turl.contains("skills"))
-            {
-                System.out.println("skills section working as expected");
-            }else
-            {
-                System.out.println("skills section not working as expected");
-            }
+            Assert.assertTrue(turl.contains("skills"), "Skills section working as expected");
     }
     public void contactverification()
     {
         driver.findElement(contact).click();
         turl = driver.getCurrentUrl();
-        if(turl.contains("contact"))
-        {
-            System.out.println("contact section working as expected");
-        }else
-        {
-            System.out.println("contact section not working as expected");
-        }
+        Assert.assertTrue(turl.contains("contact"), "Contact section working as expected");
     }
 
 }

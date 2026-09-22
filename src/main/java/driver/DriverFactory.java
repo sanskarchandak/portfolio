@@ -3,24 +3,23 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.safari.SafariDriver;
+
 public class DriverFactory
 {
-    public static WebDriver createDriver(String browserName)
+    public static WebDriver createDriver(String browser)
     {
-        String bname = browserName.toLowerCase();
-        if(bname.equals("chrome"))
+        if(browser.equalsIgnoreCase("chrome"))
         {
             return new ChromeDriver();
-        } else if (bname.equals("edge"))
+        }else if(browser.equalsIgnoreCase("edge"))
         {
             return new EdgeDriver();
-        }else if(bname.equals("firefox"))
+        } else if(browser.equalsIgnoreCase("firefox"))
         {
             return new FirefoxDriver();
         }else
         {
-            throw  new IllegalArgumentException();
+            throw new IllegalArgumentException("Unsupported Browser : " + browser);
         }
     }
 }

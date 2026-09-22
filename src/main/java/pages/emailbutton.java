@@ -3,16 +3,16 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 public class emailbutton
 {
     WebDriver driver;
 
-    emailbutton(WebDriver driver)
+    public emailbutton(WebDriver driver)
     {
         this.driver = driver;
     }
-    //By emaillocator = By.name("contact");
 
     public void verifyemail()
     {
@@ -20,12 +20,7 @@ public class emailbutton
         WebElement email = driver.findElement(By.xpath("//*[@id=\"contact\"]/div/div/a"));
 
         String href = email.getAttribute("href");
-        System.out.println(href);
-        if (href.equals("mailto:connectwithsanskar@gmail.com")) {
-            System.out.println("Email link is correct");
-        } else {
-            System.out.println("Email link is incorrect");
-        }
+        Assert.assertTrue(href.equals("mailto:connectwithsanskar@gmail.com"), "Email link is correct");
 
     }
 }

@@ -3,11 +3,12 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 public class githubVerification
 {
     WebDriver driver;
-    githubVerification(WebDriver driver)
+   public githubVerification(WebDriver driver)
     {
         this.driver=driver;
     }
@@ -17,15 +18,6 @@ public class githubVerification
     {
         WebElement gitB = driver.findElement(gitbutton);
         String href = gitB.getAttribute("href");
-        if(href.equals("https://github.com/sanskarchandak"))
-        {
-            System.out.println("Github link is correct");
-        }else
-        {
-            System.out.println("Github link is incorrect");
-        }
-
+        Assert.assertTrue(href.equals("https://github.com/sanskarchandak"), "Github link is correct");
     }
-
-
 }
