@@ -12,8 +12,8 @@ public class BaseTest {
     @BeforeMethod(alwaysRun = true)
     public void setup() {
         driver = DriverFactory.createDriver("chrome");
+        driver.manage().window().maximize();
         driver.get("https://sanskarchandak.com/?i=1");
-        System.out.println("========== BASE SETUP EXECUTED ==========");
     }
 
     @AfterMethod(alwaysRun = true)

@@ -17,7 +17,6 @@ public class Navbar {
         this.driver= driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
-    //"a[href='https://example.com']"
     By about = By.name("about");
     By skills = By.name("skills");
     By contact = By.name("contact");
