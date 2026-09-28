@@ -1,10 +1,13 @@
 name: Deploy Portfolio to InfinityFree
 
 on:
-  push:
-    branches:
-      - main
-
+ workflow_dispatch:
+    inputs:
+      environment:
+        description: "Target Environment"
+        required: true
+        default: "production"
+        type: string
 jobs:
   deploy:
     name: Deploy Website
