@@ -43,6 +43,11 @@ pipeline
          stage('Publish Report') {
              steps {
                  ftpPublisher(
+                     continueOnError: false,
+                     failOnError: true,
+                     alwaysPublishFromMaster: false,
+                     masterNodeName: '',
+                     paramPublish: [parameterName: ''],
                      publishers: [
                          [
                              configName: 'infinityfree',
@@ -59,11 +64,10 @@ pipeline
              }
          }
     }
-     post
-         {
+     post{
            always
             {
               junit 'target/surefire-reports/*.xml'
             }
-         }
+     }
 }
