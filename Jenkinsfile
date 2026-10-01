@@ -2,7 +2,8 @@ pipeline
 {
     agent any
 
-    stages{
+    stages
+    {
              stage('Smoke Tests')
             {
                 steps
@@ -39,12 +40,12 @@ pipeline
                 bat 'mvn test "-Dgroups=regression"'
             }
           }
-        post
-        {
-          always
-          {
-            junit 'target/surefire-reports/*.xml'
-          }
-        }
     }
+     post
+         {
+           always
+            {
+              junit 'target/surefire-reports/*.xml'
+            }
+         }
 }
