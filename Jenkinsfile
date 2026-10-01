@@ -40,6 +40,24 @@ pipeline
              }
              }
          }
+         stage('Publish Report') {
+             steps {
+                 ftpPublisher(
+                     publishers: [
+                         [
+                             configName: 'infinityfree',
+                             transfers: [
+                                 [
+                                     sourceFiles: 'target/surefire-reports/**',
+                                     removePrefix: 'target/surefire-reports',
+                                     remoteDirectory: 'reports/latest'
+                                 ]
+                             ]
+                         ]
+                     ]
+                 )
+             }
+         }
     }
      post
          {
