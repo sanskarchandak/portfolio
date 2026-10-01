@@ -33,13 +33,13 @@ pipeline
                       }
                   }
           }
-          stage('Regression Tests')
-          {
-             steps
-            {
-                bat 'mvn test "-Dgroups=regression"'
-            }
-          }
+         stage('Regression Tests') {
+          steps {
+             catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                 bat 'mvn test "-Dgroups=regression"'
+             }
+             }
+         }
     }
      post
          {
