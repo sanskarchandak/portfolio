@@ -8,7 +8,7 @@ pipeline
             {
                 steps
                 {
-                   bat 'mvn test "-Dgroups=smoke"'
+                   bat 'mvn test "-Dsurefire.suiteXmlFiles=src/test/resources/testng-smoke.xml"'
                 }
             }
            stage('Deploy')
@@ -38,7 +38,7 @@ pipeline
                  script {
                      def regressionResult = bat(
                          returnStatus: true,
-                         script: 'mvn test "-Dgroups=regression"'
+                         script: 'mvn test "-Dsurefire.suiteXmlFiles=src/test/resources/testng-regression.xml"'
                      )
 
                      if (regressionResult != 0) {
