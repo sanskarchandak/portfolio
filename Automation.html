@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Test Automation Project | Sanskar Chandak</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon"
+          href="assets/images/icon.png"
+          sizes="32x32">
+
+    <!-- Main Portfolio CSS -->
+    <link rel="stylesheet"
+          href="assets/css/main.css">
+
+
+    <!-- =========================================
+         AUTOMATION PAGE - LAYOUT ONLY
+         Visual styling comes from main.css
+    ========================================== -->
+
+    <style>
+
+        /* ==============================
+           HERO
+        ============================== */
+
+        .automation-hero {
+            min-height: auto;
+            padding: 150px 0 90px;
+        }
+
+        .automation-hero p {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+
+        /* ==============================
+           PROJECT SECTIONS
+        ============================== */
+
+        .project-section {
+            padding: 80px 0;
+        }
+
+        .project-intro {
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .project-intro p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+        }
+
+
+        /* ==============================
+           PIPELINE
+        ============================== */
+
+        .pipeline-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .pipeline-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 15px;
+            padding: 1.75rem 1.25rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .pipeline-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .pipeline-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 2rem;
+            height: 2rem;
+
+            border: 1px solid var(--accent-primary);
+            border-radius: 50%;
+
+            color: var(--accent-primary);
+            font-size: 0.8rem;
+            font-weight: 700;
+
+            margin-bottom: 1rem;
+        }
+
+        .pipeline-icon {
+            color: var(--accent-primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .pipeline-card h4 {
+            color: var(--accent-primary);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .pipeline-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.65;
+            margin: 0;
+        }
+
+
+        /* ==============================
+           STATUS
+        ============================== */
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        .status-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 15px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .status-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .status-icon {
+            color: var(--accent-primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .status-card h4 {
+            color: var(--accent-primary);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .status-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.65;
+            margin: 0;
+            min-height: 3rem;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+
+            margin-top: 1.25rem;
+
+            padding: 0.4rem 0.8rem;
+
+            border: 1px solid currentColor;
+            border-radius: 999px;
+
+            color: var(--accent-primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+
+        /* ==============================
+           WORKFLOW
+        ============================== */
+
+        .workflow-box {
+            max-width: 950px;
+            margin: 0 auto;
+
+            padding: 1rem 2rem;
+
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 15px;
+
+            backdrop-filter: blur(10px);
+        }
+
+        .workflow-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 2rem;
+
+            padding: 1.2rem 0;
+
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .workflow-row:last-child {
+            border-bottom: none;
+        }
+
+        .workflow-step {
+            color: var(--accent-primary);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .workflow-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            text-align: right;
+        }
+
+
+        /* ==============================
+           TECHNOLOGY STACK
+        ============================== */
+
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        .stack-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 15px;
+
+            padding: 1.75rem;
+
+            text-align: center;
+
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .stack-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .stack-icon {
+            color: var(--accent-primary);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stack-card h4 {
+            color: var(--accent-primary);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .stack-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+
+        /* ==============================
+           PROJECT LINKS
+        ============================== */
+
+        .link-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 1.5rem;
+
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        .link-cards .skill-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            height: 100%;
+            margin: 0;
+        }
+
+        .link-cards .skill-card p {
+            flex: 1;
+            margin-bottom: 1.5rem;
+        }
+
+
+        /* ==============================
+           BACK LINK
+        ============================== */
+
+        .back-link {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .back-link a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link a:hover {
+            color: var(--accent-secondary);
+        }
+
+
+        /* ==============================
+           RESPONSIVE
+        ============================== */
+
+        @media (max-width: 1000px) {
+
+            .pipeline-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .status-grid,
+            .stack-grid,
+            .link-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+
+        @media (max-width: 700px) {
+
+            .pipeline-grid,
+            .status-grid,
+            .stack-grid,
+            .link-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .workflow-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.4rem;
+            }
+
+            .workflow-desc {
+                text-align: left;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- ==============================
+     NAVBAR
+================================== -->
+
+<nav class="navbar navbar-expand-lg">
+
+    <div class="container">
+
+        <a class="navbar-brand"
+           href="index.html">
+            Sanskar Chandak
+        </a>
+
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <div class="collapse navbar-collapse"
+             id="navbarNav">
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       name="about"
+                       href="index.html#about">
+
+                        About
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       name="skills"
+                       href="index.html#skills">
+
+                        Skills
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a class="nav-link active"
+                       name="automation"
+                       href="automation.html"
+                       aria-current="page">
+
+                        Automation
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       name="contact"
+                       href="index.html#contact">
+
+                        Contact
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ==============================
+     HERO
+================================== -->
+
+<section class="hero automation-hero"
+         id="top">
+
+    <div class="container">
+
+        <h1>
+            Test Automation &amp; CI/CD
+        </h1>
+
+
+        <p>
+            A real-world QA automation project where this portfolio website
+            is the application under test. The workflow combines Selenium,
+            TestNG, Maven, Jenkins and GitHub Actions to validate changes
+            before deployment.
+        </p>
+
+
+        <div class="cta-buttons">
+
+            <a href="#pipeline"
+               class="btn btn-primary-custom">
+
+                <i class="fas fa-diagram-project"></i>
+
+                View Pipeline
+
+            </a>
+
+
+            <a href="https://github.com/sanskarchandak/portfolio"
+               class="btn btn-primary-custom"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                <i class="fab fa-github"></i>
+
+                View Source
+
+            </a>
+
+            <a href="reports/latest/index.html"
+               class="btn btn-primary-custom"
+               name="test-report"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                <i class="fas fa-file-lines"></i>
+
+                View Latest Report
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==============================
+     PROJECT OVERVIEW
+================================== -->
+
+<section class="project-section"
+         id="overview">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            About the Project
+        </h2>
+
+
+        <div class="project-intro">
+
+            <p>
+                Instead of building a separate demo application, I use my
+                own portfolio website as the application under test.
+                The automation framework validates important user journeys
+                while Jenkins controls the CI pipeline.
+            </p>
+
+
+            <p>
+                The project demonstrates UI automation, test organization,
+                CI execution, deployment gating and automated hosting as
+                one connected QA workflow.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==============================
+     CI/CD PIPELINE
+================================== -->
+
+<section class="project-section"
+         id="pipeline">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            CI/CD Pipeline
+        </h2>
+
+
+        <div class="pipeline-grid">
+
+
+            <!-- GITHUB -->
+
+            <div class="pipeline-card reveal">
+
+                <span class="pipeline-number">
+                    01
+                </span>
+
+
+                <div class="pipeline-icon">
+
+                    <i class="fab fa-github"></i>
+
+                </div>
+
+
+                <h4>
+                    GitHub
+                </h4>
+
+
+                <p>
+                    Website source code, automation framework and
+                    Jenkinsfile are maintained in the repository.
+                </p>
+
+            </div>
+
+
+
+            <!-- JENKINS -->
+
+            <div class="pipeline-card reveal">
+
+                <span class="pipeline-number">
+                    02
+                </span>
+
+
+                <div class="pipeline-icon">
+
+                    <i class="fab fa-jenkins"></i>
+
+                </div>
+
+
+                <h4>
+                    Jenkins
+                </h4>
+
+
+                <p>
+                    Jenkins detects the main branch and starts the
+                    CI pipeline.
+                </p>
+
+            </div>
+
+
+
+            <!-- SMOKE -->
+
+            <div class="pipeline-card reveal">
+
+                <span class="pipeline-number">
+                    03
+                </span>
+
+
+                <div class="pipeline-icon">
+
+                    <i class="fas fa-vial"></i>
+
+                </div>
+
+
+                <h4>
+                    Smoke Tests
+                </h4>
+
+
+                <p>
+                    Maven executes the TestNG smoke suite against
+                    the live portfolio website.
+                </p>
+
+            </div>
+
+
+
+            <!-- QUALITY GATE -->
+
+            <div class="pipeline-card reveal">
+
+                <span class="pipeline-number">
+                    04
+                </span>
+
+
+                <div class="pipeline-icon">
+
+                    <i class="fas fa-shield-halved"></i>
+
+                </div>
+
+
+                <h4>
+                    Quality Gate
+                </h4>
+
+
+                <p>
+                    Deployment proceeds only when the smoke suite
+                    completes successfully.
+                </p>
+
+            </div>
+
+
+
+            <!-- DEPLOY -->
+
+            <div class="pipeline-card reveal">
+
+                <span class="pipeline-number">
+                    05
+                </span>
+
+
+                <div class="pipeline-icon">
+
+                    <i class="fas fa-cloud-arrow-up"></i>
+
+                </div>
+
+
+                <h4>
+                    Deploy
+                </h4>
+
+
+                <p>
+                    Jenkins triggers GitHub Actions, which deploys
+                    the website to InfinityFree.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==============================
+     PIPELINE STATUS
+================================== -->
+
+<section class="project-section"
+         id="status">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Pipeline Status
+        </h2>
+
+
+        <div class="status-grid">
+
+
+            <!-- SMOKE -->
+
+            <div class="status-card reveal">
+
+                <div class="status-icon">
+
+                    <i class="fas fa-vial"></i>
+
+                </div>
+
+
+                <h4>
+                    Smoke Suite
+                </h4>
+
+
+                <p>
+                    Jenkins executes the smoke test suite before deployment.
+                </p>
+
+
+                <span class="status-badge">
+
+                    <i class="fas fa-circle-check"></i>
+
+                    5 Tests Passing
+
+                </span>
+
+            </div>
+
+
+
+            <!-- GITHUB ACTIONS -->
+
+            <div class="status-card reveal">
+
+                <div class="status-icon">
+
+                    <i class="fas fa-code-branch"></i>
+
+                </div>
+
+
+                <h4>
+                    Deployment Workflow
+                </h4>
+
+
+                <p>
+                    GitHub Actions receives the deployment trigger from Jenkins.
+                </p>
+
+
+                <span class="status-badge">
+
+                    <i class="fas fa-circle-check"></i>
+
+                    Workflow Enabled
+
+                </span>
+
+            </div>
+
+
+
+            <!-- HOSTING -->
+
+            <div class="status-card reveal">
+
+                <div class="status-icon">
+
+                    <i class="fas fa-server"></i>
+
+                </div>
+
+
+                <h4>
+                    Hosting
+                </h4>
+
+
+                <p>
+                    The portfolio website is deployed to InfinityFree
+                    through the GitHub Actions workflow.
+                </p>
+
+
+                <span class="status-badge">
+
+                    <i class="fas fa-circle-check"></i>
+
+                    Deployed
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==============================
+     HOW IT WORKS
+================================== -->
+
+<section class="project-section"
+         id="workflow">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            How It Works
+        </h2>
+
+
+        <div class="workflow-box reveal">
+
+
+            <div class="workflow-row">
+
+                <span class="workflow-step">
+                    01. Code change
+                </span>
+
+                <span class="workflow-desc">
+                    Changes are committed to the GitHub main branch.
+                </span>
+
+            </div>
+
+
+            <div class="workflow-row">
+
+                <span class="workflow-step">
+                    02. Jenkins pipeline
+                </span>
+
+                <span class="workflow-desc">
+                    Jenkins checks out the repository and executes the Jenkinsfile.
+                </span>
+
+            </div>
+
+
+            <div class="workflow-row">
+
+                <span class="workflow-step">
+                    03. Smoke testing
+                </span>
+
+                <span class="workflow-desc">
+                    Maven runs the TestNG smoke group against the website.
+                </span>
+
+            </div>
+
+
+            <div class="workflow-row">
+
+                <span class="workflow-step">
+                    04. Quality gate
+                </span>
+
+                <span class="workflow-desc">
+                    A failed smoke suite stops the pipeline before deployment.
+                </span>
+
+            </div>
+
+
+            <div class="workflow-row">
+
+                <span class="workflow-step">
+                    05. GitHub Actions
+                </span>
+
+                <span class="workflow-desc">
+                    Jenkins triggers the deployment workflow through the GitHub API.
+                </span>
+
+            </div>
+
+
+            <div class="workflow-row">
+
+                <span class="workflow-step">
+                    06. Production deployment
+                </span>
+
+                <span class="workflow-desc">
+                    GitHub Actions deploys the website to InfinityFree.
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==============================
+     TECHNOLOGY STACK
+================================== -->
+
+<section class="project-section"
+         id="stack">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Technology Stack
+        </h2>
+
+
+        <div class="stack-grid">
+
+
+            <div class="stack-card reveal">
+
+                <div class="stack-icon">
+                    <i class="fab fa-java"></i>
+                </div>
+
+                <h4>
+                    Java + Selenium
+                </h4>
+
+                <p>
+                    Browser automation and UI validation.
+                </p>
+
+            </div>
+
+
+            <div class="stack-card reveal">
+
+                <div class="stack-icon">
+                    <i class="fas fa-vial"></i>
+                </div>
+
+                <h4>
+                    TestNG + Maven
+                </h4>
+
+                <p>
+                    Test organization, grouping and execution.
+                </p>
+
+            </div>
+
+
+            <div class="stack-card reveal">
+
+                <div class="stack-icon">
+                    <i class="fab fa-jenkins"></i>
+                </div>
+
+                <h4>
+                    Jenkins
+                </h4>
+
+                <p>
+                    Continuous integration and quality gating.
+                </p>
+
+            </div>
+
+
+            <div class="stack-card reveal">
+
+                <div class="stack-icon">
+                    <i class="fab fa-github"></i>
+                </div>
+
+                <h4>
+                    GitHub
+                </h4>
+
+                <p>
+                    Source control and workflow integration.
+                </p>
+
+            </div>
+
+
+            <div class="stack-card reveal">
+
+                <div class="stack-icon">
+                    <i class="fas fa-gears"></i>
+                </div>
+
+                <h4>
+                    GitHub Actions
+                </h4>
+
+                <p>
+                    Deployment automation.
+                </p>
+
+            </div>
+
+
+            <div class="stack-card reveal">
+
+                <div class="stack-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+
+                <h4>
+                    InfinityFree
+                </h4>
+
+                <p>
+                    Hosting environment for the portfolio.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==============================
+     EXPLORE PROJECT
+================================== -->
+
+<section class="project-section"
+         id="explore">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Explore the Project
+        </h2>
+
+
+        <div class="link-cards">
+
+
+            <!-- SOURCE CODE -->
+
+            <div class="skill-card reveal">
+
+                <i class="fab fa-github skill-icon"
+                   aria-hidden="true"></i>
+
+
+                <h4>
+                    Source Code
+                </h4>
+
+
+                <p>
+                    Browse the Selenium framework, TestNG suites,
+                    page classes and Jenkins pipeline.
+                </p>
+
+
+                <a href="https://github.com/sanskarchandak/portfolio"
+                   class="btn btn-primary-custom"
+                   name="github-repo"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <i class="fab fa-github"
+                       aria-hidden="true"></i>
+
+                    View Repository
+
+                </a>
+
+            </div>
+
+
+
+            <!-- GITHUB ACTIONS -->
+
+            <div class="skill-card reveal">
+
+                <i class="fas fa-gears skill-icon"
+                   aria-hidden="true"></i>
+
+
+                <h4>
+                    GitHub Actions
+                </h4>
+
+
+                <p>
+                    View the deployment workflow triggered by Jenkins
+                    after the smoke tests pass.
+                </p>
+
+
+                <a href="https://github.com/sanskarchandak/portfolio/actions/workflows/deploy.yml"
+                   class="btn btn-primary-custom"
+                   name="github-actions"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <i class="fas fa-arrow-up-right-from-square"
+                       aria-hidden="true"></i>
+
+                    View Workflow
+
+                </a>
+
+            </div>
+
+
+
+            <!-- TEST REPORT -->
+
+            <div class="skill-card reveal">
+
+                <i class="fas fa-clipboard-check skill-icon"
+                   aria-hidden="true"></i>
+
+
+                <h4>
+                    Test Report
+                </h4>
+
+
+                <p>
+                    Open the latest published automation report
+                    with the results of the test execution.
+                </p>
+
+
+                <a href="reports/latest/index.html"
+                   class="btn btn-primary-custom"
+                   name="test-report"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <i class="fas fa-file-lines"
+                       aria-hidden="true"></i>
+
+                    View Latest Report
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+        <p class="back-link reveal">
+
+            <a href="index.html"
+               name="back-home">
+
+                <i class="fas fa-arrow-left"
+                   aria-hidden="true"></i>
+
+                Back to Portfolio
+
+            </a>
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==============================
+     FOOTER
+================================== -->
+
+<footer class="footer">
+
+    <p>
+
+        &copy;
+
+        <span id="year"></span>
+
+        Sanskar Chandak |
+
+        All Rights Reserved |
+
+        Made with
+
+        <i class="fas fa-heart"></i>
+
+        and Coffee
+
+    </p>
+
+</footer>
+
+
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<script>
+
+    /* ==============================
+       COPYRIGHT YEAR
+    ============================== */
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        var yearSpan =
+            document.getElementById('year');
+
+        if (yearSpan) {
+
+            yearSpan.textContent =
+                new Date().getFullYear();
+
+        }
+
+    });
+
+
+    /* ==============================
+       NAVBAR SCROLL
+    ============================== */
+
+    var navbar =
+        document.querySelector('.navbar');
+
+
+    window.addEventListener('scroll', function () {
+
+        navbar.classList.toggle(
+            'scrolled',
+            window.scrollY > 50
+        );
+
+    });
+
+
+    /* ==============================
+       SCROLL REVEAL
+    ============================== */
+
+    var revealElements =
+        document.querySelectorAll('.reveal');
+
+
+    function revealOnScroll() {
+
+        revealElements.forEach(function (el) {
+
+            var rect =
+                el.getBoundingClientRect();
+
+
+            if (
+                rect.top < window.innerHeight &&
+                rect.bottom > 0
+            ) {
+
+                el.classList.add('active');
+
+            }
+
+        });
+
+    }
+
+
+    window.addEventListener(
+        'load',
+        revealOnScroll
+    );
+
+
+    var ticking = false;
+
+
+    window.addEventListener('scroll', function () {
+
+        if (!ticking) {
+
+            window.requestAnimationFrame(
+                revealOnScroll
+            );
+
+            ticking = true;
+
+
+            setTimeout(function () {
+
+                ticking = false;
+
+            }, 100);
+
+        }
+
+    });
+
+
+    /* ==============================
+       MOBILE NAVBAR
+    ============================== */
+
+    var navbarCollapse =
+        document.querySelector('.navbar-collapse');
+
+
+    document.querySelectorAll('.nav-link')
+        .forEach(function (link) {
+
+            link.addEventListener('click', function () {
+
+                if (
+                    navbarCollapse.classList.contains('show')
+                ) {
+
+                    document
+                        .querySelector('.navbar-toggler')
+                        .click();
+
+                }
+
+            });
+
+        });
+
+</script>
+
+</body>
+</html>
