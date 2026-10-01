@@ -34,10 +34,17 @@ pipeline
                   }
           }
          stage('Regression Tests') {
-          steps {
-             catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                 bat 'mvn test "-Dgroups=regression"'
-             }
+             steps {
+                 script {
+                     def regressionResult = bat(
+                         returnStatus: true,
+                         script: 'mvn test "-Dgroups=regression"'
+                     )
+
+                     if (regressionResult != 0) {
+                         env.REGRESSION_FAILED = 'true'
+                     }
+                 }
              }
          }
          stage('Publish Report') {
@@ -64,10 +71,15 @@ pipeline
              }
          }
     }
-     post{
-           always
-            {
-              junit 'target/surefire-reports/*.xml'
-            }
+     post {
+         always {
+             junit 'target/surefire-reports/*.xml'
+
+             script {
+                 if (env.REGRESSION_FAILED == 'true') {
+                     currentBuild.result = 'FAILURE'
+                 }
+             }
+         }
      }
 }
