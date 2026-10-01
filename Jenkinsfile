@@ -32,5 +32,19 @@ pipeline
                       }
                   }
           }
+          stage('Regression Tests')
+          {
+             steps
+            {
+                bat 'mvn test "-Dgroups=regression"'
+            }
+          }
+        post
+        {
+          always
+          {
+            junit 'target/surefire-reports/*.xml'
+          }
+        }
     }
 }
