@@ -1,4 +1,4 @@
-package smoke;
+package tests;
 
 import base.BaseTest;
 import org.testng.annotations.Test;
@@ -6,28 +6,28 @@ import pages.*;
 
 public class PortfolioTest extends BaseTest
 {
-    @Test(groups = {"smoke" ,  "regression"})
+    @Test(groups = {"tests" ,  "regression"})
     public void verifyhomepage()
     {
         Homepage hp = new Homepage(driver);
         hp.homepageverifly();
     }
 
-   @Test(groups = {"smoke" ,  "regression"})
+   @Test(groups = {"tests" ,  "regression"})
     public void verifynavbar()
    {
         Navbar nav = new Navbar(driver);
         nav.aboutverification();
    }
 
-   @Test(groups = {"smoke" ,  "regression"})
+   @Test(groups = {"tests" ,  "regression"})
     public void verifyemail()
    {
         emailbutton eBtn = new emailbutton(driver);
         eBtn.verifyemail();
    }
 
-    @Test(groups = {"smoke" ,  "regression"})
+    @Test(groups = {"tests" ,  "regression"})
     public void verifyresumebtn()
     {
         resumebutton revBtn =  new resumebutton(driver);
@@ -63,7 +63,7 @@ public class PortfolioTest extends BaseTest
         tVerify.verifyTwitter();
     }
 
-    @Test(groups = {"smoke" ,  "regression"})
+    @Test(groups = {"tests" ,  "regression"})
     public void verifyfootyear()
     {
         footerYearVerification fYearVerify =  new footerYearVerification(driver);

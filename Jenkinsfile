@@ -8,7 +8,7 @@ pipeline
             {
                 steps
                 {
-                   bat 'mvn test "-Dsurefire.suiteXmlFiles=src/test/resources/testng-smoke.xml"'
+                   bat 'mvn test "-Dsurefire.suiteXmlFiles=src/test/resources/testng-tests.xml"'
                 }
             }
            stage('Deploy')

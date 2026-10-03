@@ -527,4 +527,19 @@
                 font-size: 1.8rem;
                 line-height: 1.2;
             }
+            .automation-link {
+                position: relative;
+                font-weight: 600;
+            }
+
+            .automation-link::after {
+                content: "QA Project";
+                position: absolute;
+                top: -12px;
+                right: -18px;
+                font-size: 8px;
+                padding: 2px 5px;
+                border-radius: 8px;
+                opacity: 0.9;
+            }
         }

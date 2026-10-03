@@ -4,11 +4,11 @@
     <test name = "Smoke Tests">
         <groups>
             <run>
-                <include name="smoke"/>
+                <include name="tests"/>
             </run>
         </groups>
     <classes>
-        <class name = "smoke.PortfolioTest"/>
+        <class name = "tests.PortfolioTest"/>
     </classes>
     </test>
 </suite>
