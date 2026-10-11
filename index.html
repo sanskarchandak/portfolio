@@ -80,46 +80,126 @@
 <!-- SKILLS SECTION -->
 <section id="skills" class="skills">
     <div class="container">
-        <h2 class="section-title reveal">Technical Skills</h2>
-        <div class="skills-container">
 
-            <div class="skill-card reveal">
-                <i class="fas fa-code skill-icon"></i>
-                <h4>Programming</h4>
-                <p>Core Java, OOP</p>
+        <h2 class="section-title reveal">
+            QA & Automation <span class="title-accent">Skillset</span>
+        </h2>
+
+        <p class="skills-subtitle reveal">
+            Key areas I work with across software testing and quality engineering
+        </p>
+
+        <div class="skills-dashboard">
+
+            <!-- RADAR CHART -->
+            <div class="radar-chart-wrapper reveal">
+                <canvas id="skillsRadarChart"></canvas>
             </div>
 
-            <div class="skill-card reveal">
-                <i class="fas fa-vial skill-icon"></i>
-                <h4>Functional Testing</h4>
-                <p>Manual, Functional, Integration, Regression, SIT, UAT</p>
-            </div>
+            <!-- SKILL DETAILS -->
+            <div class="skill-detail-grid">
 
-            <div class="skill-card reveal">
-                <i class="fas fa-bug skill-icon"></i>
-                <h4>Test Automation</h4>
-                <p>Selenium WebDriver, TestNG, JUnit, Maven, POM, Cucumber</p>
-            </div>
+                <div class="skill-detail-card skill-blue reveal">
+                    <div class="skill-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
 
-            <div class="skill-card reveal">
-                <i class="fas fa-database skill-icon"></i>
-                <h4>API & Backend</h4>
-                <p>Postman, Swagger, REST API, SQL, JSON/XML Validation</p>
-            </div>
+                    <h4>Functional Testing</h4>
 
-            <div class="skill-card reveal">
-                <i class="fas fa-tools skill-icon"></i>
-                <h4>Tools & CI/CD</h4>
-                <p>JIRA, Confluence, Azure DevOps, Git, Jenkins</p>
-            </div>
+                    <p>
+                        Test Case Design, Regression,
+                        Integration, SIT, UAT
+                    </p>
+                </div>
 
-            <div class="skill-card reveal">
-                <i class="fas fa-tasks skill-icon"></i>
-                <h4>QA Practices</h4>
-                <p>STLC, SDLC, Requirement Analysis, Test Case Design, Agile/Scrum</p>
+
+                <div class="skill-detail-card skill-green reveal">
+                    <div class="skill-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+
+                    <h4>API Testing</h4>
+
+                    <p>
+                        Postman, Swagger, REST API,
+                        JSON/XML Validation
+                    </p>
+                </div>
+
+
+                <div class="skill-detail-card skill-purple reveal">
+                    <div class="skill-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+
+                    <h4>UI Automation</h4>
+
+                    <p>
+                        Selenium WebDriver, Java,
+                        TestNG, Maven, POM
+                    </p>
+                </div>
+
+
+                <div class="skill-detail-card skill-orange reveal">
+                    <div class="skill-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+
+                    <h4>Test Frameworks</h4>
+
+                    <p>
+                        TestNG, Maven, POM,
+                        Cucumber
+                    </p>
+                </div>
+
+
+                <div class="skill-detail-card skill-pink reveal">
+                    <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+
+                    <h4>SQL & Backend</h4>
+
+                    <p>
+                        SQL, Joins, Data Validation,
+                        Backend Verification
+                    </p>
+                </div>
+
+
+                <div class="skill-detail-card skill-cyan reveal">
+                    <div class="skill-icon">
+                        <i class="fas fa-gears"></i>
+                    </div>
+
+                    <h4>CI/CD</h4>
+
+                    <p>
+                        Jenkins, GitHub Actions,
+                        Git, CI/CD Workflows
+                    </p>
+                </div>
+
+
+                <div class="skill-detail-card skill-yellow reveal">
+                    <div class="skill-icon">
+                        <i class="fas fa-list-check"></i>
+                    </div>
+
+                    <h4>QA Practices</h4>
+
+                    <p>
+                        STLC, SDLC, Requirement Analysis,
+                        Agile/Scrum
+                    </p>
+                </div>
+
             </div>
 
         </div>
+
     </div>
 </section>
 <!-- CONTACT SECTION -->
@@ -157,7 +237,7 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     // ===== DYNAMIC COPYRIGHT YEAR =====
     document.addEventListener('DOMContentLoaded', function() {
@@ -230,6 +310,110 @@
                 document.querySelector('.navbar-toggler').click();
             }
         });
+    });
+
+  //===Skill charts======
+
+
+        const ctx = document.getElementById('skillsRadarChart');
+
+        new Chart(ctx, {
+
+        type: 'radar',
+
+        data: {
+
+        labels: [
+        'Functional Testing',
+        'API Testing',
+        'UI Automation',
+        'Test Frameworks',
+        'CI/CD',
+        'SQL & Backend',
+        'QA Practices'
+        ],
+
+        datasets: [{
+        label: 'QA Skillset',
+
+        data: [
+        85,
+        80,
+        85,
+        75,
+        70,
+        75,
+        80
+        ],
+
+        borderWidth: 2,
+
+        pointRadius: 4,
+
+        pointHoverRadius: 6,
+
+        fill: true
+    }]
+    },
+
+        options: {
+
+        responsive: true,
+
+        maintainAspectRatio: true,
+
+        scales: {
+
+        r: {
+
+        min: 0,
+
+        max: 100,
+
+        ticks: {
+        stepSize: 20,
+
+        color: '#71849a',
+
+        backdropColor: 'transparent',
+
+        font: {
+        size: 10
+    }
+    },
+
+        grid: {
+        color: 'rgba(113, 132, 154, 0.20)'
+    },
+
+        angleLines: {
+        color: 'rgba(113, 132, 154, 0.20)'
+    },
+
+        pointLabels: {
+        color: '#f5f9ff',
+
+        font: {
+        size: 12,
+        weight: '500'
+    },
+
+        padding: 12
+    }
+    }
+    },
+
+        plugins: {
+
+        legend: {
+        display: false
+    },
+
+        tooltip: {
+        enabled: true
+    }
+    }
+    }
     });
 </script>
 

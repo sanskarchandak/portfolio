@@ -333,8 +333,35 @@
             flex: 1;
             margin-bottom: 1.5rem;
         }
+        /* ==============================
+               Explore the project
+            ============================== */
+        .project-link-card {
+            border: 1px solid rgba(55, 120, 180, 0.28);
+            border-radius: 12px;
+            padding: 30px 24px;
+            transition:
+                    transform 0.3s ease,
+                    border-color 0.3s ease,
+                    box-shadow 0.3s ease;
+        }
 
+        .project-link-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(25, 170, 255, 0.60);
+            box-shadow: 0 10px 30px rgba(25, 170, 255, 0.08);
+        }
+        .project-link-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
 
+        .project-link-card .btn {
+            margin-top: auto;
+        }
         /* ==============================
            BACK LINK
         ============================== */
@@ -392,6 +419,13 @@
                 text-align: left;
             }
         }
+        @media (max-width: 768px) {
+            .link-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
 
     </style>
 </head>
@@ -576,8 +610,6 @@
                 The automation framework validates important user journeys
                 while Jenkins controls the CI pipeline.
             </p>
-
-
             <p>
                 The project demonstrates UI automation, test organization,
                 CI execution, deployment gating and automated hosting as
@@ -589,6 +621,107 @@
     </div>
 
 </section>
+<!-- ==============================
+     HOW IT WORKS
+================================== -->
+
+<section class="project-section"
+         id="workflow">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            How It Works
+        </h2>
+
+
+        <div class="workflow-box reveal">
+
+
+            <div class="workflow-row">
+
+                <span class="workflow-step">
+                    01. Code change
+                </span>
+
+                <span class="workflow-desc">
+                    Changes are committed to the GitHub main branch.
+                </span>
+
+            </div>
+
+
+            <div class="workflow-row">
+
+                <span class="workflow-step">
+                    02. Jenkins pipeline
+                </span>
+
+                <span class="workflow-desc">
+                    Jenkins checks out the repository and executes the Jenkinsfile.
+                </span>
+
+            </div>
+
+
+            <div class="workflow-row">
+
+                <span class="workflow-step">
+                    03. Smoke testing
+                </span>
+
+                <span class="workflow-desc">
+                    Maven runs the TestNG tests group against the website.
+                </span>
+
+            </div>
+
+
+            <div class="workflow-row">
+
+                <span class="workflow-step">
+                    04. Quality gate
+                </span>
+
+                <span class="workflow-desc">
+                    A failed tests suite stops the pipeline before deployment.
+                </span>
+
+            </div>
+
+
+            <div class="workflow-row">
+
+                <span class="workflow-step">
+                    05. GitHub Actions
+                </span>
+
+                <span class="workflow-desc">
+                    Jenkins triggers the deployment workflow through the GitHub API.
+                </span>
+
+            </div>
+
+
+            <div class="workflow-row">
+
+                <span class="workflow-step">
+                    06. Production deployment
+                </span>
+
+                <span class="workflow-desc">
+                    GitHub Actions deploys the website to InfinityFree.
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
 
 
 
@@ -889,110 +1022,6 @@
 </section>
 
 
-
-<!-- ==============================
-     HOW IT WORKS
-================================== -->
-
-<section class="project-section"
-         id="workflow">
-
-    <div class="container">
-
-        <h2 class="section-title">
-            How It Works
-        </h2>
-
-
-        <div class="workflow-box reveal">
-
-
-            <div class="workflow-row">
-
-                <span class="workflow-step">
-                    01. Code change
-                </span>
-
-                <span class="workflow-desc">
-                    Changes are committed to the GitHub main branch.
-                </span>
-
-            </div>
-
-
-            <div class="workflow-row">
-
-                <span class="workflow-step">
-                    02. Jenkins pipeline
-                </span>
-
-                <span class="workflow-desc">
-                    Jenkins checks out the repository and executes the Jenkinsfile.
-                </span>
-
-            </div>
-
-
-            <div class="workflow-row">
-
-                <span class="workflow-step">
-                    03. Smoke testing
-                </span>
-
-                <span class="workflow-desc">
-                    Maven runs the TestNG tests group against the website.
-                </span>
-
-            </div>
-
-
-            <div class="workflow-row">
-
-                <span class="workflow-step">
-                    04. Quality gate
-                </span>
-
-                <span class="workflow-desc">
-                    A failed tests suite stops the pipeline before deployment.
-                </span>
-
-            </div>
-
-
-            <div class="workflow-row">
-
-                <span class="workflow-step">
-                    05. GitHub Actions
-                </span>
-
-                <span class="workflow-desc">
-                    Jenkins triggers the deployment workflow through the GitHub API.
-                </span>
-
-            </div>
-
-
-            <div class="workflow-row">
-
-                <span class="workflow-step">
-                    06. Production deployment
-                </span>
-
-                <span class="workflow-desc">
-                    GitHub Actions deploys the website to InfinityFree.
-                </span>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
 <!-- ==============================
      TECHNOLOGY STACK
 ================================== -->
@@ -1124,37 +1153,31 @@
      EXPLORE PROJECT
 ================================== -->
 
-<section class="project-section"
-         id="explore">
+<section class="project-section" id="explore">
 
     <div class="container">
 
-        <h2 class="section-title">
+        <h2 class="section-title reveal">
             Explore the Project
         </h2>
 
-
         <div class="link-cards">
-
 
             <!-- SOURCE CODE -->
 
-            <div class="skill-card reveal">
+            <div class="project-link-card reveal">
 
                 <i class="fab fa-github skill-icon"
                    aria-hidden="true"></i>
-
 
                 <h4>
                     Source Code
                 </h4>
 
-
                 <p>
                     Browse the Selenium framework, TestNG suites,
                     page classes and Jenkins pipeline.
                 </p>
-
 
                 <a href="https://github.com/sanskarchandak/portfolio"
                    class="btn btn-primary-custom"
@@ -1172,25 +1195,21 @@
             </div>
 
 
-
             <!-- GITHUB ACTIONS -->
 
-            <div class="skill-card reveal">
+            <div class="project-link-card reveal">
 
                 <i class="fas fa-gears skill-icon"
                    aria-hidden="true"></i>
-
 
                 <h4>
                     GitHub Actions
                 </h4>
 
-
                 <p>
-                    View the deployment workflow triggered by Jenkins
-                    after the tests tests pass.
+                    View the deployment workflow triggered
+                    by Jenkins after the smoke tests pass.
                 </p>
-
 
                 <a href="https://github.com/sanskarchandak/portfolio/actions/workflows/deploy.yml"
                    class="btn btn-primary-custom"
@@ -1208,25 +1227,21 @@
             </div>
 
 
-
             <!-- TEST REPORT -->
 
-            <div class="skill-card reveal">
+            <div class="project-link-card reveal">
 
                 <i class="fas fa-clipboard-check skill-icon"
                    aria-hidden="true"></i>
-
 
                 <h4>
                     Test Report
                 </h4>
 
-
                 <p>
                     Open the latest published automation report
                     with the results of the test execution.
                 </p>
-
 
                 <a href="reports/latest/index.html"
                    class="btn btn-primary-custom"
@@ -1242,7 +1257,6 @@
                 </a>
 
             </div>
-
 
         </div>
 
@@ -1264,8 +1278,6 @@
     </div>
 
 </section>
-
-
 
 <!-- ==============================
      FOOTER
