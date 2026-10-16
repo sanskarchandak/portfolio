@@ -22,6 +22,7 @@ public class resumebutton
     {
         WebElement resume = driver.findElement(resumeBtn);
         String href = resume.getAttribute("href");
-        Assert.assertTrue(href.equals("https://sanskarchandak.com/assets/docs/Sanskar_chandak_resume.pdf"), "Correct Resume link");
+//        System.out.println("Resume href: " + href);
+        Assert.assertTrue(href.contains("/assets/docs/Sanskar_chandak_resume.pdf"), "Correct Resume link");
     }
 }

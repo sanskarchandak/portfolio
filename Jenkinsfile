@@ -8,7 +8,11 @@ pipeline
             {
                 steps
                 {
-                   bat 'mvn test "-Dsurefire.suiteXmlFiles=src/test/resources/testng-smoke.xml"'
+                bat '''
+                            start "PortfolioServer" /B cmd /C "python -m http.server 8000"
+                            timeout /T 2 /NOBREAK >NUL
+                            mvn test "-Dsurefire.suiteXmlFiles=src/test/resources/testng-smoke.xml" "-DbaseUrl=http://localhost:8000"
+                        '''
                 }
             }
            stage('Deploy')

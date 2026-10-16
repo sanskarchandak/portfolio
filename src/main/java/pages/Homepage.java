@@ -14,8 +14,9 @@ public class Homepage
         }
         public void homepageverifly()
         {
-            String wurl = driver.getCurrentUrl();
-            Assert.assertTrue(wurl.contains("sanskar"), "Correct page open");
+            String title = driver.getTitle();
+            System.out.println(title);
+            Assert.assertTrue(title.contains("Sanskar"), "Correct page open");
         }
 }
 
