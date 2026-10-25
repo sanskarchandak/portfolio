@@ -8,8 +8,8 @@ pipeline
             {
                steps
                {
-                   bat 'python --version'
-
+                   //bat 'python --version'
+                   bat '"C:\\Users\\sansk\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe" --version'
                    bat '''
                        start "PortfolioServer" /B cmd /C "python -m http.server 8000"
                        timeout /T 2 /NOBREAK >NUL
