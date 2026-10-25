@@ -6,16 +6,19 @@ pipeline
     {
              stage('Smoke Tests')
             {
-                steps
-                {
-                python --version
-                curl.exe http://localhost:8000
-                bat '''
-                            start "PortfolioServer" /B cmd /C "python -m http.server 8000"
-                            timeout /T 2 /NOBREAK >NUL
-                            mvn test "-Dsurefire.suiteXmlFiles=src/test/resources/testng-smoke.xml" "-DbaseUrl=http://localhost:8000"
-                        '''
-                }
+               steps
+               {
+                   bat 'python --version'
+
+                   bat '''
+                       start "PortfolioServer" /B cmd /C "python -m http.server 8000"
+                       timeout /T 2 /NOBREAK >NUL
+                   '''
+
+                   bat 'curl.exe http://localhost:8000'
+
+                   bat 'mvn test "-Dsurefire.suiteXmlFiles=src/test/resources/testng-smoke.xml" "-DbaseUrl=http://localhost:8000"'
+               }
             }
            stage('Deploy')
            {
