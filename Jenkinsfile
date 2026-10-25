@@ -11,8 +11,7 @@ pipeline
                    //bat 'python --version'
                    bat '"C:\\Users\\sansk\\AppData\\Local\\Programs\\Python\\Python311\\python.exe" --version'
                    bat '''
-                       start "PortfolioServer" /B cmd /C "python -m http.server 8000"
-                       timeout /T 2 /NOBREAK >NUL
+                       start "PortfolioServer" /B cmd /C ""C:\Users\sansk\AppData\Local\Programs\Python\Python311\python.exe" -m http.server 8000"
                    '''
 
                    bat 'curl.exe http://localhost:8000'
