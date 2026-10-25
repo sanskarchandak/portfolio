@@ -8,6 +8,8 @@ pipeline
             {
                 steps
                 {
+                python --version
+                curl.exe http://localhost:8000
                 bat '''
                             start "PortfolioServer" /B cmd /C "python -m http.server 8000"
                             timeout /T 2 /NOBREAK >NUL
