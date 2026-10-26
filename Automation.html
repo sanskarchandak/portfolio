@@ -78,7 +78,7 @@
 
         .pipeline-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 1.5rem;
             max-width: 1100px;
             margin: 0 auto;
@@ -261,18 +261,28 @@
 
         .stack-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(24, minmax(0, 1fr));
             gap: 1.5rem;
 
             max-width: 1050px;
             margin: 0 auto;
         }
 
+        .stack-card:nth-child(n + 1) {
+            grid-column: span 6;
+        }
+
+        /* Place the final three cards as a centered group on desktop. */
+        .stack-card:nth-child(5) { grid-column: 4 / span 6; }
+        .stack-card:nth-child(6) { grid-column: 10 / span 6; }
+        .stack-card:nth-child(7) { grid-column: 16 / span 6; }
+
         .stack-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 15px;
-
+            min-height: 310px;
+            height: 100%;
             padding: 1.75rem;
 
             text-align: center;
@@ -386,47 +396,41 @@
            RESPONSIVE
         ============================== */
 
-        @media (max-width: 1000px) {
-
-            .pipeline-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
+        @media (max-width: 900px) {
+            .pipeline-grid,
             .status-grid,
             .stack-grid,
             .link-cards {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
+            .stack-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+            .stack-card:nth-child(n + 1) { grid-column: span 6; }
+            .stack-card:nth-child(5), .stack-card:nth-child(6), .stack-card:nth-child(7) { grid-column: auto; }
+
         }
 
-
-        @media (max-width: 700px) {
-
+        @media (max-width: 600px) {
             .pipeline-grid,
             .status-grid,
             .stack-grid,
             .link-cards {
                 grid-template-columns: 1fr;
             }
-
+            .stack-card:nth-child(n + 1) { grid-column: 1; }
+            .workflow-box { padding: 0.75rem 1.25rem; }
             .workflow-row {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 0.4rem;
             }
-
-            .workflow-desc {
-                text-align: left;
-            }
-        }
-        @media (max-width: 768px) {
-            .link-cards {
-                grid-template-columns: 1fr;
-            }
+            .workflow-step { white-space: normal; }
+            .workflow-desc { text-align: left; }
         }
 
-
-
+        @media (prefers-reduced-motion: reduce) {
+            .pipeline-card, .status-card, .stack-card, .project-link-card { transition: none; }
+            .pipeline-card:hover, .status-card:hover, .stack-card:hover, .project-link-card:hover { transform: none; }
+        }
     </style>
 </head>
 
@@ -538,10 +542,7 @@
 
 
         <p>
-            A real-world QA automation project where this portfolio website
-            is the application under test. The workflow combines Selenium,
-            TestNG, Maven, Jenkins and GitHub Actions to validate changes
-            before deployment.
+            A real-world QA automation project where this portfolio website is the application under test. The pipeline validates the checked-out code locally with automated smoke tests before deployment, then runs regression tests against the deployed website.
         </p>
 
 
@@ -605,15 +606,10 @@
         <div class="project-intro">
 
             <p>
-                Instead of building a separate demo application, I use my
-                own portfolio website as the application under test.
-                The automation framework validates important user journeys
-                while Jenkins controls the CI pipeline.
+                Instead of building a separate demo application, I use my own portfolio website as the application under test. The automation framework validates important user journeys while Jenkins orchestrates the CI pipeline.
             </p>
             <p>
-                The project demonstrates UI automation, test organization,
-                CI execution, deployment gating and automated hosting as
-                one connected QA workflow.
+                Before deployment, Jenkins checks out the latest code and serves the application locally using a Python HTTP server. A smoke test suite validates the candidate build, and deployment proceeds only when the smoke tests pass. After deployment, a broader regression suite validates the live website.
             </p>
 
         </div>
@@ -663,15 +659,18 @@
 
             </div>
 
-
+            <div class="workflow-row">
+                <span class="workflow-step">03. Local application</span>
+                <span class="workflow-desc">Jenkins starts a local Python HTTP server to serve the checked-out application as the candidate build.</span>
+            </div>
             <div class="workflow-row">
 
                 <span class="workflow-step">
-                    03. Smoke testing
+                    04. Smoke testing
                 </span>
 
                 <span class="workflow-desc">
-                    Maven runs the TestNG tests group against the website.
+                   Maven executes the TestNG smoke suite against the local candidate build.
                 </span>
 
             </div>
@@ -680,11 +679,11 @@
             <div class="workflow-row">
 
                 <span class="workflow-step">
-                    04. Quality gate
+                    05. Quality gate
                 </span>
 
                 <span class="workflow-desc">
-                    A failed tests suite stops the pipeline before deployment.
+                   Smoke tests act as the deployment quality gate. A failed smoke suite prevents deployment from proceeding.
                 </span>
 
             </div>
@@ -693,11 +692,11 @@
             <div class="workflow-row">
 
                 <span class="workflow-step">
-                    05. GitHub Actions
+                    06. GitHub Actions
                 </span>
 
                 <span class="workflow-desc">
-                    Jenkins triggers the deployment workflow through the GitHub API.
+                    After the smoke suite passes, Jenkins triggers the GitHub Actions deployment workflow through the GitHub API.
                 </span>
 
             </div>
@@ -706,7 +705,7 @@
             <div class="workflow-row">
 
                 <span class="workflow-step">
-                    06. Production deployment
+                    07. Production deployment
                 </span>
 
                 <span class="workflow-desc">
@@ -714,7 +713,10 @@
                 </span>
 
             </div>
-
+            <div class="workflow-row">
+                <span class="workflow-step">08. Regression testing</span>
+                <span class="workflow-desc">A broader TestNG regression suite runs against the deployed website to validate the production build.</span>
+            </div>
 
         </div>
 
@@ -800,14 +802,38 @@
 
             </div>
 
+            <!-- Local Candidate Build -->
+            <div class="pipeline-card reveal">
 
+                <span class="pipeline-number">
+                    03
+                </span>
+
+
+                <div class="pipeline-icon">
+
+                    <i class="fas fa-server" aria-hidden="true"></i>
+
+                </div>
+
+
+                <h4>
+                    Local Candidate Build
+                </h4>
+
+
+                <p>
+                    Jenkins starts a local Python HTTP server to serve the checked-out code for pre-deployment validation.
+                </p>
+
+            </div>
 
             <!-- SMOKE -->
 
             <div class="pipeline-card reveal">
 
                 <span class="pipeline-number">
-                    03
+                    04
                 </span>
 
 
@@ -824,8 +850,7 @@
 
 
                 <p>
-                    Maven executes the TestNG tests suite against
-                    the live portfolio website.
+                    Maven executes the TestNG smoke suite against the local candidate build.
                 </p>
 
             </div>
@@ -837,7 +862,7 @@
             <div class="pipeline-card reveal">
 
                 <span class="pipeline-number">
-                    04
+                    05
                 </span>
 
 
@@ -854,20 +879,26 @@
 
 
                 <p>
-                    Deployment proceeds only when the tests suite
-                    completes successfully.
+                    Deployment is allowed only when the pre-deployment smoke suite passes successfully.
                 </p>
 
             </div>
 
 
 
+            <!-- GITHUB ACTIONS -->
+            <div class="pipeline-card reveal">
+                <span class="pipeline-number">06</span>
+                <div class="pipeline-icon"><i class="fas fa-gears" aria-hidden="true"></i></div>
+                <h4>GitHub Actions</h4>
+                <p>After the smoke suite passes, Jenkins triggers the deployment workflow through the GitHub API.</p>
+            </div>
             <!-- DEPLOY -->
 
             <div class="pipeline-card reveal">
 
                 <span class="pipeline-number">
-                    05
+                    07
                 </span>
 
 
@@ -885,11 +916,37 @@
 
                 <p>
                     Jenkins triggers GitHub Actions, which deploys
-                    the website to InfinityFree.
+                    the validated application to InfinityFree.
                 </p>
 
             </div>
 
+            <!-- REGRESSION -->
+
+            <div class="pipeline-card reveal">
+
+                <span class="pipeline-number">
+                    08
+                </span>
+
+
+                <div class="pipeline-icon">
+
+                    <i class="fas fa-chart-line" aria-hidden="true"></i>
+
+                </div>
+
+
+                <h4>
+                    Regression
+                </h4>
+
+
+                <p>
+                    The regression suite runs against the deployed website to validate the production build.
+                </p>
+
+            </div>
 
         </div>
 
@@ -928,12 +985,12 @@
 
 
                 <h4>
-                    Smoke Suite
+                    Pre-deployment Smoke
                 </h4>
 
 
                 <p>
-                    Jenkins executes the tests test suite before deployment.
+                    Critical tests executed against the locally served candidate build before deployment.
                 </p>
 
 
@@ -966,7 +1023,7 @@
 
 
                 <p>
-                    GitHub Actions receives the deployment trigger from Jenkins.
+                    GitHub Actions receives the deployment trigger from Jenkins after the smoke quality gate passes.
                 </p>
 
 
@@ -982,7 +1039,7 @@
 
 
 
-            <!-- HOSTING -->
+            <!--Post-deployment Regression -->
 
             <div class="status-card reveal">
 
@@ -994,13 +1051,12 @@
 
 
                 <h4>
-                    Hosting
+                    Post-deployment Regression
                 </h4>
 
 
                 <p>
-                    The portfolio website is deployed to InfinityFree
-                    through the GitHub Actions workflow.
+                    The broader regression suite validates the website after deployment.
                 </p>
 
 
@@ -1008,8 +1064,7 @@
 
                     <i class="fas fa-circle-check"></i>
 
-                    Deployed
-
+                    Regression Active
                 </span>
 
             </div>
@@ -1088,7 +1143,21 @@
                 </p>
 
             </div>
+            <div class="stack-card reveal">
 
+                <div class="stack-icon">
+                    <i class="fab fa-python" aria-hidden="true"></i>
+                </div>
+
+                <h4>
+                    Python HTTP Server
+                </h4>
+
+                <p>
+                    Local application server used to validate the checked-out candidate build before deployment.
+                </p>
+
+            </div>
 
             <div class="stack-card reveal">
 
