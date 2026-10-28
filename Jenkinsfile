@@ -4,21 +4,43 @@ pipeline
 
     stages
     {
-             stage('Smoke Tests')
-            {
-               steps
-               {
-                   //bat 'python --version'
-                   bat '"C:\\Users\\sansk\\AppData\\Local\\Programs\\Python\\Python311\\python.exe" --version'
-                   bat '''
-                       start "PortfolioServer" /B cmd /C ""C:\\Users\\sansk\\AppData\\Local\\Programs\\Python\\Python311\\python.exe" -m http.server 8000"
-                   '''
+           stage('Smoke Tests') {
+               steps {
+                   script {
+                       def smokeResult = 0
 
-                   bat 'curl.exe http://localhost:8000'
+                       bat '''
+                           echo Starting local portfolio server...
 
-                   bat 'mvn test "-Dsurefire.suiteXmlFiles=src/test/resources/testng-smoke.xml" "-DbaseUrl=http://localhost:8000"'
+                           powershell -NoProfile -Command "$p = Start-Process -FilePath 'C:\\Users\\sansk\\AppData\\Local\\Programs\\Python\\Python311\\python.exe' -ArgumentList '-m','http.server','8000','--bind','127.0.0.1' -WorkingDirectory $env:WORKSPACE -PassThru; $p.Id | Set-Content -Path '%WORKSPACE%\\server.pid'"
+
+                           echo Waiting for local server...
+
+                           powershell -NoProfile -Command "$ok = $false; for ($i = 0; $i -lt 20; $i++) { try { Invoke-WebRequest -UseBasicParsing 'http://127.0.0.1:8000' -TimeoutSec 2 | Out-Null; $ok = $true; break } catch { Start-Sleep -Seconds 1 } }; if (-not $ok) { Write-Error 'Local server did not become available within 20 seconds.'; exit 1 }"
+
+                           echo Local server is UP.
+                       '''
+
+                       try {
+                           smokeResult = bat(
+                               returnStatus: true,
+                               script: 'mvn test "-Dsurefire.suiteXmlFiles=src/test/resources/testng-smoke.xml" "-DbaseUrl=http://127.0.0.1:8000"'
+                           )
+                       } finally {
+                           bat '''
+                               echo Stopping local server...
+
+                               powershell -NoProfile -Command "if (Test-Path '%WORKSPACE%\\server.pid') { $serverPid = [int](Get-Content '%WORKSPACE%\\server.pid'); Stop-Process -Id $serverPid -Force -ErrorAction SilentlyContinue; Remove-Item '%WORKSPACE%\\server.pid' -Force -ErrorAction SilentlyContinue }"
+                           '''
+                       }
+
+                       if (smokeResult != 0) {
+                           error("Smoke tests failed")
+                       }
+                   }
                }
-            }
+           }
+
            stage('Deploy')
            {
                   steps {
